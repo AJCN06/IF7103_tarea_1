@@ -1,0 +1,1 @@
+Falta `libs/configuartion.php` con credenciales de de la BD
