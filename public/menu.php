@@ -5,4 +5,5 @@
     <li class="list-group-item"> <a class="nav-link"  href="?controlador=Aprendizaje&accion=aprendizajeView">Estilo de aprendizaje</a></li>
     <li class="list-group-item"> <a class="nav-link"  href="?controlador=Profesor&accion=profesorView">Tipo de profesor</a></li>
     <li class="list-group-item"> <a class="nav-link"  href="?controlador=Redes&accion=redesView">Clasificacion de redes</a></li>
+    <li class="list-group-item"> <a class="nav-link"  href="?controlador=Extra&accion=extraView">Parte Extra</a></li>
 </ul>
