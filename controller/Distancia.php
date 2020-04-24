@@ -2,19 +2,21 @@
 
 class Distancia
 {
-
+    private $aprox;
     public function __construct()
     {
+        $this->aprox = 0;
     }
 
+    public function getAprox()
+    {
+        return $this->aprox;
+    }
 
-    //consulta = datos proporsionados por el usuario para buscar
-    //tabla = datos de la base de datos, es la tabla con la que se va a comparar
-    //datosEvaluar = nombre de las columanas de la tabla con la que se va aplicar 
-    //el algorimo
-
-
-
+    /* consulta = datos proporsionados por el usuario para buscar
+    tabla = datos de la base de datos, es la tabla con la que se va a comparar
+    datosEvaluar = nombre de las columanas de la tabla con la que se va aplicar 
+    el algorimo*/
     public function distancia($consulta, $tabla, $datosEvaluar)
     {
 
@@ -43,12 +45,7 @@ class Distancia
                 $tuplaMenor = $tupla;
             }
         }
-
-        // //Ver tupla elegida
-        // echo 'result: ';
-        // foreach ($tuplaMenor as &$dato) {
-        //     echo $dato . '   |   ';
-        // }
+        $tuplaMenor['aprox'] = $result;
         return $tuplaMenor;
     }
 
@@ -67,14 +64,12 @@ class Distancia
         return 0; //f
     }
 
-
     public function tipoRecinto($val)
     {
         if ($val == 'Turrialba')
             return 1;
         return 0; //paraiso
     }
-
 
     public function tipoEstilo($val)
     {
@@ -86,8 +81,6 @@ class Distancia
             return 3;
         return 0; //asimilador
     }
-
-
 
     public function tipoB($val)
     {

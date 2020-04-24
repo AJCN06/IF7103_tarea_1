@@ -14,7 +14,7 @@ acomodador), su último promedio para matrícula y su sexo. -->
                 <option value="0">Asimilador</option>
                 <option value="1">Acomodador</option>
                 <option value="2">Divergente</option>
-                <option value="3">Comvergente</option>
+                <option value="3">Convergente</option>
             </select>
         </div>
         <div class="form-group col-lg-6 col-md-8 col-sm-12">
