@@ -2,15 +2,8 @@
 
 class Distancia
 {
-    private $aprox;
     public function __construct()
     {
-        $this->aprox = 0;
-    }
-
-    public function getAprox()
-    {
-        return $this->aprox;
     }
 
     /* consulta = datos proporsionados por el usuario para buscar
@@ -45,7 +38,6 @@ class Distancia
                 $tuplaMenor = $tupla;
             }
         }
-        $tuplaMenor['aprox'] = $result;
         return $tuplaMenor;
     }
 

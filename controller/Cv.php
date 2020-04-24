@@ -45,13 +45,16 @@ class CvController
         $result['training'] = $training;
         return $result;
     }
-    /* Guarda cada resultado de iteracion en la posicion del bloque al que 
-    corresponde, en este caso inicia en uno ya que la formula es una sumatoria
-    de i = 1 hasta k */
+    /* Guarda el porcentaje de error cada de iteracion en la posicion del bloque 
+    al que corresponde, en este caso inicia en uno ya que la formula es una 
+    sumatoria de i = 1 hasta k */
     public function saveItaration($result)
     {
-        $this->iteractionResult[$this->chunk_count] = $result;
+        $total = $result['errores'] + $result['aciertos'];
+        $porcErr = ($result['errores'] * 100) / $total;
+        $this->iteractionResult[$this->chunk_count] = $porcErr;
     }
+
     /* Aplica la formula del error, la sumatoria de cada resultado de las 
     iteraciones entre 1/k */
     public function err()
@@ -60,23 +63,10 @@ class CvController
         foreach ($this->iteractionResult as $result) {
             $sumatoria += $result;
         }
-        return $sumatoria * (1 / $this->k);
+        $err['iteraciones'] = $this->iteractionResult;
+        $err['total'] = $sumatoria / $this->k;
+
+        return $err;
     }
 
-    //imprime el estadado del objeto, **para pruebas
-    public function printStatus()
-    {
-        echo 'K = ' . $this->k . '<br>';
-        echo 'chunk count = ' . $this->chunk_count . '<br>';
-        echo 'chunks = <br>';
-        foreach ($this->chunks as $chunk) {
-            foreach ($chunk as $tupla) {
-                foreach ($tupla as $value) {
-                    echo $value . ' ';
-                }
-                echo '<br>';
-            }
-            echo '<hr>';
-        }
-    }
 }

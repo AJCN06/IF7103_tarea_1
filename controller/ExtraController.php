@@ -26,24 +26,31 @@ class ExtraController
 
         //ciclo que realiza cada iteracion 
         for ($i = 0; $i < $k; $i++) {
-            $sumaIteracion = 0;
+            $datos['aciertos'] = 0;
+            $datos['errores'] = 0;
             $set = $Cv->getData(); /* generamos un chunk nuevo como test
                                     dejando los demas como training */
 
 
             /* compara cada consulta de test contra training y suma sus 
             aproximaciones NOTA: parte del algoritmo que no tenia clara */
-            
+
             foreach ($set['test'] as $consulta) {
                 $resultado = $Distancia->distancia($consulta, $set['training'], ['EC', 'OR', 'CA', 'EA']);
-                $sumaIteracion += $resultado['aprox'];
+                if ($resultado['Estilo'] == $consulta['Estilo']) {
+                    $datos['aciertos']++;
+                } else {
+                    $datos['errores']++;
+                }
             }
-            //guardamos el resultado de esta iteracion
-            $Cv->saveItaration($sumaIteracion);
-        }
-        //calculamos el error
-        $result = $Cv->err();
+            /*Guardamos el resultado de esta iteracion despues de calcular su 
+             porcentaje de error*/
+            $Cv->saveItaration($datos);
+        }//termino de calcular iteraciones
 
-        $this->view->show('ExtraView.php', $result);
+        //calculamos el error
+        $err = $Cv->err();
+
+        $this->view->show('ExtraView.php', $err);
     }
 }
